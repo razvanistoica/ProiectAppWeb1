@@ -1,0 +1,8 @@
+com\db\paw\entities\Status.class
+com\db\paw\service\impl\UserServiceImpl.class
+com\db\paw\service\UserService.class
+com\db\paw\entities\Shop.class
+com\db\paw\controller\UserController.class
+com\db\paw\DAO\impl\UserDAOImpl.class
+com\db\paw\DAO\UserDAO.class
+com\db\paw\entities\User.class
