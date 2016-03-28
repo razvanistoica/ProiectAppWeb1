@@ -1,6 +1,8 @@
 package com.db.paw.entities;
 
 import javax.persistence.*;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Razvan
@@ -11,57 +13,71 @@ import javax.persistence.*;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String name;
-    private String email;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
+    private String firstname;
+    private String lastname;
+    private String telephone;
+    private String eMail;
+
     private String password;
-    private String age;
-    private String sex;
 
-    @ManyToOne
-    @JoinColumn(name = "shop")
-    private Shop shop;
-
-    @ManyToOne
-    @JoinColumn(name = "status")
-    private Status status;
 
     public User() {
     }
 
-    public User(String name, String email, String password, String age, String sex, Shop shop, Status status) {
-        this.name = name;
-        this.email = email;
+    public User(String firstname, String lastname, String telephone, String eMail, String password, DepartmentStore departmentStore, List<Role> roles, List<Order> orders) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.telephone = telephone;
+        this.eMail = eMail;
         this.password = password;
-        this.age = age;
-        this.sex = sex;
-        this.shop = shop;
-        this.status = status;
+        this.departmentStore = departmentStore;
+        this.role = role;
+        this.orders = orders;
     }
 
-    public Integer getId() {
-        return id;
+    @OneToOne
+    @JoinColumn(name = "DEPARTMENTSTORE_ID")
+    private DepartmentStore departmentStore;
+
+    //@Enumerated
+    private Role role;
+
+    @OneToMany(mappedBy="user")
+    private List<Order> orders;
+
+
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getName() {
-        return name;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
     public String getPassword() {
@@ -72,35 +88,39 @@ public class User {
         this.password = password;
     }
 
-    public String getAge() {
-        return age;
+    public DepartmentStore getDepartmentStore() {
+        return departmentStore;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setDepartmentStore(DepartmentStore departmentStore) {
+        this.departmentStore = departmentStore;
     }
 
-    public String getSex() {
-        return sex;
+    public Role getRoles() {
+        return role;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setRoles(List<Role> roles) {
+        this.role = role;
     }
 
-    public Shop getShop() {
-        return shop;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
-    public Status getStatus() {
-        return status;
+    public int getId() {
+        return id;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setId(int id) {
+        this.id = id;
     }
+
+
+
+
 }

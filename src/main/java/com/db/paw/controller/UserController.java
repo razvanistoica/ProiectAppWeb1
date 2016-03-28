@@ -30,7 +30,7 @@ public class UserController {
         public String insert(@RequestBody User user){
 
         try{
-            userService.insertUser(new User("Jhon","gdfg","gdfsg","gdssg","dsfsdfg",new Shop(),new Status()));
+            userService.insertUser(new User());
             return "Operatia s-a efectuat cu succes";
         }catch(Error e){
             return "Userul nu a putut fi inregistrat";
