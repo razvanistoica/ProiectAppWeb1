@@ -16,7 +16,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/paw</path>
-                    <port>8080</port>
+                    <port>8090</port>
                 </configuration>
             </plugin>
             <plugin>

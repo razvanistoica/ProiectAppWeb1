@@ -1,7 +1,9 @@
 package com.db.paw.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,17 +19,21 @@ public class Product {
     private int id;
     private String name;
     private String description;
+    private double price;
 
     //@OneToOne(mappedBy="product")
-    private Integer stock;
+    private int availableQuantity;
 
-    @ManyToMany
-    @JoinTable(name="PRODUCT_ORDER", joinColumns=@JoinColumn(name="PRODUCT_ID"), inverseJoinColumns=@JoinColumn(name="ORDER_ID"))
-    private List<Order> orders;
+    @OneToMany(mappedBy = "product")
+    private Set<ProductOrder> productOrder = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name="SUPPLIER_ID")
     Supplier suppliers;
+
+
+
+
 
 
 }

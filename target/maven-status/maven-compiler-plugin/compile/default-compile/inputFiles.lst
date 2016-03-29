@@ -2,11 +2,10 @@ C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\Product.java
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\DAO\impl\UserDAOImpl.java
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\DepartmentStore.java
-C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\Order.java
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\service\impl\UserServiceImpl.java
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\DAO\UserDAO.java
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\User.java
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\controller\UserController.java
-C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\Shop.java
-C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\Status.java
+C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\Orders.java
+C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\ProductOrder.java
 C:\Users\Razvan\OneDrive\Learning\JavaSchool\ProiectAppWeb\src\main\java\com\db\paw\entities\Supplier.java

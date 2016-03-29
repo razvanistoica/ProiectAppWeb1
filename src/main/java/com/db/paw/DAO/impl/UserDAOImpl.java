@@ -22,7 +22,10 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void insertUser(User user) {
+        try{
         sessionFactory.getCurrentSession().saveOrUpdate(user);
-
+        }catch(Error e){
+            System.out.
+        }
     }
 }

@@ -22,11 +22,31 @@ public class User {
 
     private String password;
 
+    @OneToOne
+    @JoinColumn(name = "DEPARTMENTSTORE_ID")
+    private DepartmentStore departmentStore;
 
+    @Column(columnDefinition = "VARCHAR")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @OneToMany(mappedBy="user")
+    private List<Orders> orders;
+
+
+
+    public enum Role{
+        EMPLOYEE , MANAGER , SUPPLIER , ADMIN
+    }
     public User() {
     }
 
-    public User(String firstname, String lastname, String telephone, String eMail, String password, DepartmentStore departmentStore, List<Role> roles, List<Order> orders) {
+    public User(String firstname) {
+        this.firstname = firstname;
+    }
+
+
+    public User(String firstname, String lastname, String telephone, String eMail, String password, DepartmentStore departmentStore, Role role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.telephone = telephone;
@@ -34,19 +54,7 @@ public class User {
         this.password = password;
         this.departmentStore = departmentStore;
         this.role = role;
-        this.orders = orders;
     }
-
-    @OneToOne
-    @JoinColumn(name = "DEPARTMENTSTORE_ID")
-    private DepartmentStore departmentStore;
-
-    //@Enumerated
-    private Role role;
-
-    @OneToMany(mappedBy="user")
-    private List<Order> orders;
-
 
     public String getFirstname() {
         return firstname;
@@ -100,15 +108,15 @@ public class User {
         return role;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Role role) {
         this.role = role;
     }
 
-    public List<Order> getOrders() {
+    public List<Orders> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
 

@@ -25,6 +25,6 @@
     <bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
 
     <mvc:resources mapping="/**" location="/WEB-INF/" />
-    <mvc:view-controller path="/" view-name="/resources/index.html"/>
+    <mvc:view-controller path="/" view-name="/index.html"/>
 
 </beans>

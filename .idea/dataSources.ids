@@ -1163,7 +1163,15 @@
       <column name="street" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="streetNo" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
-      <exported-key name="FK_7f17ea0c8b9844c3ad496af2803" table="user" schema="" catalog="paw" columns="DEPARTMENTSTORE_ID" />
+      <exported-key name="FK_1c09ab7cae184d17b47d058733f" table="user" schema="" catalog="paw" columns="DEPARTMENTSTORE_ID" />
+    </table>
+    <table name="orders" schema="" catalog="paw" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="date" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93" />
+      <column name="USER_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="id" />
+      <foreign-key name="FK_0e84ffe681b4438ea5289961632" columns="USER_ID" ref-table="user" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <exported-key name="FK_3059675e0b164115a2847fe5a13" table="productorder" schema="" catalog="paw" columns="ORDERS_ID" />
     </table>
     <table name="product" schema="" catalog="paw" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
@@ -1171,26 +1179,24 @@
       <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="stock" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="SUPPLIER_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="availableQuantity" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="price" sqlType="DOUBLE" length="22" precision="0" nullable="false" jdbcType="8" />
       <primary-key name="PRIMARY" columns="id" />
-      <foreign-key name="FK_6e180f17f5684fd2a45c724e59a" columns="SUPPLIER_ID" ref-table="supplier" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
-      <exported-key name="FK_5122d86fe5854683834c823149e" table="product_order" schema="" catalog="paw" columns="PRODUCT_ID" />
+      <foreign-key name="FK_3c7d2c768060462492774c835ad" columns="SUPPLIER_ID" ref-table="supplier" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <exported-key name="FK_6f67b4eb853840479224cccadcd" table="productorder" schema="" catalog="paw" columns="PRODUCT_ID" />
+      <index name="FK_1ffa547e3a9447279a8ea2bf7f9" unique="false" columns="SUPPLIER_ID" />
     </table>
-    <table name="product_order" schema="" catalog="paw" type="TABLE">
-      <column name="PRODUCT_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
-      <column name="ORDER_ID" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
-      <foreign-key name="FK_5122d86fe5854683834c823149e" columns="PRODUCT_ID" ref-table="product" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
-    </table>
-    <table name="shop" schema="" catalog="paw" type="TABLE">
+    <table name="productorder" schema="" catalog="paw" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
+      <column name="orderedQuantity" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="totalPrice" sqlType="DOUBLE" length="22" precision="0" nullable="false" jdbcType="8" />
+      <column name="ORDERS_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="PRODUCT_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
-      <exported-key name="FK_632925d8f4624a78bd189d9ed02" table="user" schema="" catalog="paw" columns="shop" />
-    </table>
-    <table name="status" schema="" catalog="paw" type="TABLE">
-      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="type" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <primary-key name="PRIMARY" columns="id" />
-      <exported-key name="FK_66c95bc7d1a74b708cc1c6fb4b6" table="user" schema="" catalog="paw" columns="status" />
+      <foreign-key name="FK_12fc215f9b184b2b86db0273a8f" columns="PRODUCT_ID" ref-table="productorder" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <foreign-key name="FK_3059675e0b164115a2847fe5a13" columns="ORDERS_ID" ref-table="orders" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <foreign-key name="FK_6f67b4eb853840479224cccadcd" columns="PRODUCT_ID" ref-table="product" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <exported-key name="FK_12fc215f9b184b2b86db0273a8f" table="productorder" schema="" catalog="paw" columns="PRODUCT_ID" />
     </table>
     <table name="supplier" schema="" catalog="paw" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
@@ -1199,26 +1205,21 @@
       <column name="lastname" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="telephone" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <primary-key name="PRIMARY" columns="id" />
-      <exported-key name="FK_6e180f17f5684fd2a45c724e59a" table="product" schema="" catalog="paw" columns="SUPPLIER_ID" />
+      <exported-key name="FK_3c7d2c768060462492774c835ad" table="product" schema="" catalog="paw" columns="SUPPLIER_ID" />
     </table>
     <table name="user" schema="" catalog="paw" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
-      <column name="age" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="password" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="sex" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
-      <column name="shop" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
-      <column name="status" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
+      <column name="eMail" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="firstname" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="lastname" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
+      <column name="password" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="role" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <column name="telephone" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12" />
       <column name="DEPARTMENTSTORE_ID" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4" />
       <primary-key name="PRIMARY" columns="id" />
-      <foreign-key name="FK_632925d8f4624a78bd189d9ed02" columns="shop" ref-table="shop" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
-      <foreign-key name="FK_66c95bc7d1a74b708cc1c6fb4b6" columns="status" ref-table="status" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
-      <foreign-key name="FK_7f17ea0c8b9844c3ad496af2803" columns="DEPARTMENTSTORE_ID" ref-table="departmentstore" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <foreign-key name="FK_1c09ab7cae184d17b47d058733f" columns="DEPARTMENTSTORE_ID" ref-table="departmentstore" ref-schema="" ref-catalog="paw" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <exported-key name="FK_0e84ffe681b4438ea5289961632" table="orders" schema="" catalog="paw" columns="USER_ID" />
+      <index name="FK_e2f461dabaea4144853c4d4cea2" unique="false" columns="DEPARTMENTSTORE_ID" />
     </table>
     <table name="accounts" schema="" catalog="performance_schema" type="SYSTEM TABLE">
       <column name="USER" sqlType="CHAR" length="16" precision="0" nullable="true" jdbcType="1" />
